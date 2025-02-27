@@ -1,6 +1,8 @@
 
  // Essentials
 
+ import { MESSAGE_ID, CHANNEL_ID, roleId, emoji } from "./config.json";
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -28,10 +30,6 @@ client.once("ready", () => {
 
  // Mensagem fixa
 
- const MESSAGE_ID = "1344751404115300455"; // O ID da mensagem fixa
- const CHANNEL_ID = "1051574184322547892"; // ID do canal onde a mensagem foi enviada
- const EMOJI = "✅"; // Emoji para reação
-
 client.once(Events.ClientReady, async () => {
     console.log(`Bot iniciado como ${client.user.tag}`);
 
@@ -42,7 +40,7 @@ client.once(Events.ClientReady, async () => {
         const message = await channel.messages.fetch(MESSAGE_ID);
         console.log("Mensagem encontrada! Adicionando reação...");
 
-        await message.react(EMOJI);
+        await message.react(emoji);
 
         console.log("Reação adicionada com sucesso!");
     } catch (error) {
@@ -55,14 +53,14 @@ client.once(Events.ClientReady, async () => {
 client.on(Events.MessageReactionAdd, async (reaction, user) => {
     if (user.bot) return; // Ignora reações de bots
 
-    const roleId = "1051578289958948945"; // ID do cargo
-    const emoji = "✅"; // Emoji que ativa o cargo
-
     try {
         if (reaction.emoji.name === emoji) {
             const member = await reaction.message.guild.members.fetch(user.id);
             await member.roles.add(roleId);
             console.log(`Cargo adicionado para ${user.tag}`);
+
+             // Envia DM para o usuário
+            await user.send("🎉 Você recebeu o cargo com sucesso! Bem-vindo! Caso ainda não tenha lido, verifique a INTRODUÇÃO no servidor.");
         }
     } catch (error) {
         console.error("Erro ao adicionar cargo:", error);
@@ -71,9 +69,6 @@ client.on(Events.MessageReactionAdd, async (reaction, user) => {
 
 client.on(Events.MessageReactionRemove, async (reaction, user) => {
     if (user.bot) return;
-
-    const roleId = "1051578289958948945";
-    const emoji = "✅";
 
     try {
         if (reaction.emoji.name === emoji) {
@@ -88,6 +83,9 @@ client.on(Events.MessageReactionRemove, async (reaction, user) => {
 
 
 
+
+
+ // Server sided
 client.login(process.env.DISCORD_TOKEN)
     .then(() => console.log("Bot conectado com sucesso!"))
     .catch(err => console.error("Erro ao conectar o bot:", err));
