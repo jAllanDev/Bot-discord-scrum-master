@@ -18,6 +18,8 @@ const client = new Client({
     partials: [Partials.Message, Partials.Reaction, Partials.User],
 });
 
+ // Log
+
 client.once("ready", () => {
     console.log(`✅ Bot conectado como ${client.user.tag}`);
   });
@@ -26,25 +28,25 @@ client.once("ready", () => {
 
  // Mensagem fixa
 
+ const MESSAGE_ID = "1344751404115300455"; // O ID da mensagem fixa
+ const CHANNEL_ID = "1051574184322547892"; // ID do canal onde a mensagem foi enviada
+ const EMOJI = "✅"; // Emoji para reação
+
 client.once(Events.ClientReady, async () => {
-    const channelId = "1051574184322547892"; // ID do canal onde a mensagem será enviada
-    const roleId = "1051578289958948945"; // ID do cargo a ser adicionado
-    const emoji = "✅"; // Emoji que o usuário precisa clicar
+    console.log(`Bot iniciado como ${client.user.tag}`);
 
     try {
-        const channel = await client.channels.fetch(channelId);
+        const channel = await client.channels.fetch(CHANNEL_ID);
         if (!channel) return console.error("Canal não encontrado.");
 
-        // Enviar mensagem fixa
-        const message = await channel.send(
-            "Bem vindo! Clique no ✅ para receber seu cargo automaticamente!"
-        );
+        const message = await channel.messages.fetch(MESSAGE_ID);
+        console.log("Mensagem encontrada! Adicionando reação...");
 
-        await message.react(emoji);
+        await message.react(EMOJI);
 
-        console.log("Mensagem de verificação enviada com sucesso!");
+        console.log("Reação adicionada com sucesso!");
     } catch (error) {
-        console.error("Erro ao enviar mensagem fixa:", error);
+        console.error("Erro ao buscar a mensagem fixa:", error);
     }
 });
 
