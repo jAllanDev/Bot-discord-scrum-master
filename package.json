@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jAllanDev/Discord-BOT-Scrum-Master.git"
+    "url": "git+https://github.com/jAllanDev/Bot-discord-scrum-master.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jAllanDev/Discord-BOT-Scrum-Master/issues"
+    "url": "https://github.com/jAllanDev/Bot-discord-scrum-master/issues"
   },
-  "homepage": "https://github.com/jAllanDev/Discord-BOT-Scrum-Master#readme",
+  "homepage": "https://github.com/jAllanDev/Bot-discord-scrum-master#readme",
   "dependencies": {
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7"
