@@ -41,21 +41,24 @@ client.once("ready", () => {
       const collector = message.createReactionCollector({ filter });
   
       collector.on("collect", async (reaction, user) => {
-        const guild = reaction.message.guild; // Obtém a guilda (servidor)
-        const member = guild.members.cache.get(user.id); // Obtém o membro
-        const roleId = "1051578289958948945"; // ID do cargo
+        try {
+            const guild = reaction.message.guild; // Obtém o servidor
+            const roleId = "1051578289958948945"; // ID do cargo
     
-        if (member) {
-            try {
+            // Busca o membro corretamente para garantir que ele está carregado
+            const member = await guild.members.fetch(user.id);
+    
+            if (member) {
                 await member.roles.add(roleId); // Adiciona o cargo ao usuário
-                await channel.send(`🎉 ${user}, bem-vindo ao servidor! Você recebeu o cargo automaticamente. Verifique a categoria MÉTODOS ATALHOS para dicas essenciais!`);
-            } catch (error) {
-                console.error("Erro ao adicionar cargo:", error);
+                await channel.send(`🎉 ${user}, bem-vindo ao servidor! Você recebeu o cargo JÚNIOR. Verifique a categoria MÉTODOS ATALHOS para dicas essenciais!`);
+            } else {
+                console.error("Membro não encontrado.");
             }
-        } else {
-            console.error("Membro não encontrado.");
+        } catch (error) {
+            console.error("Erro ao adicionar cargo:", error);
         }
     });
+    
   
      
     } catch (error) {
