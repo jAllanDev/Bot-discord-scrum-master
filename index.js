@@ -1,7 +1,7 @@
 
  // Essentials
 
- import "./events/reaction.js";
+import "./events/reaction.js";
 
 import dotenv from 'dotenv';
 dotenv.config();
