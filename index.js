@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { Client, GatewayIntentBits, Partials } from 'discord.js';
+import config from "./config.json" assert { type: "json" };
+
 
 const client = new Client({  
     intents: [
@@ -19,6 +21,10 @@ const client = new Client({
     ],
     partials: [Partials.Message, Partials.Reaction, Partials.User],
 });
+
+export { client };
+
+import "./events/reaction.js";
 
  // Log
 

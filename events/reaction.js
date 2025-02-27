@@ -1,6 +1,6 @@
 import config from "../config.json" assert { type: "json" };
 const { MESSAGE_ID, CHANNEL_ID, roleId, emoji } = config;
-
+import { client } from "discord.js";
 import { Events } from "discord.js";
 
 // Mensagem fixa
