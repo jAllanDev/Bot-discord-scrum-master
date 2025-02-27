@@ -7,8 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { Client, GatewayIntentBits, Partials } from 'discord.js';
-import config from "./config.json" assert { type: "json" };
-
+import { setupReactions } from "./events/reaction.js";
 
 const client = new Client({  
     intents: [
@@ -22,16 +21,14 @@ const client = new Client({
     partials: [Partials.Message, Partials.Reaction, Partials.User],
 });
 
-export { client };
-
-import "./events/reaction.js";
-
  // Log
 
 client.once("ready", () => {
     console.log(`✅ Bot conectado como ${client.user.tag}`);
   });
   
+
+setupReactions(client);
 
  // Server sided
 client.login(process.env.DISCORD_TOKEN)

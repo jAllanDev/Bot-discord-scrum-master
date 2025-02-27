@@ -1,10 +1,10 @@
 import config from "../config.json" assert { type: "json" };
 const { MESSAGE_ID, CHANNEL_ID, roleId, emoji } = config;
-import { client } from "../index.js";
 import { Events } from "discord.js";
 
 // Mensagem fixa
 
+export function setupReactions(client) {
 client.once(Events.ClientReady, async () => {
    console.log(`Bot iniciado como ${client.user.tag}`);
 
@@ -22,6 +22,7 @@ client.once(Events.ClientReady, async () => {
        console.error("Erro ao buscar a mensagem fixa:", error);
    }
 });
+}
 
 // Dando cargo
 
