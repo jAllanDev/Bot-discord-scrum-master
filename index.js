@@ -4,7 +4,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { Client, GatewayIntentBits, Partials, Events } from 'discord.js';
+import { Client, GatewayIntentBits, Partials } from 'discord.js';
 
 const client = new Client({  
     intents: [
@@ -22,7 +22,7 @@ client.once("ready", () => {
     console.log(`✅ Bot conectado como ${client.user.tag}`);
   });
   
-      const { Events } = require("discord.js");
+  import { Events } from "discord.js";
 
  // Mensagem fixa
 
