@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "# test",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "module"
+    "type": "git",
+    "url": "https://github.com/jAllanDev/Bot-discord-scrum-master.git"
   },
   "keywords": [],
   "author": "",
