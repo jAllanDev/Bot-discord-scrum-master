@@ -1,4 +1,4 @@
-import { MESSAGE_ID, CHANNEL_ID, roleId, emoji } from "./config.json";
+import { MESSAGE_ID, CHANNEL_ID, roleId, emoji } from "./config.json" assert { type: "json" };
 import { Events } from "discord.js";
 
 // Mensagem fixa
@@ -32,8 +32,12 @@ client.on(Events.MessageReactionAdd, async (reaction, user) => {
            await member.roles.add(roleId);
            console.log(`Cargo adicionado para ${user.tag}`);
 
-            // Envia DM para o usuário
-           await user.send("🎉 Você recebeu o cargo com sucesso! Bem-vindo! Caso ainda não tenha lido, verifique a INTRODUÇÃO no servidor.");
+           try {
+            await user.send("🎉 Você recebeu o cargo com sucesso! Bem-vindo! Caso ainda não tenha lido, verifique a INTRODUÇÃO no servidor.");
+        } catch (error) {
+            console.error(`Erro ao enviar DM para ${user.tag}:`, error);
+        }
+        
        }
    } catch (error) {
        console.error("Erro ao adicionar cargo:", error);

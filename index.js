@@ -1,8 +1,7 @@
 
  // Essentials
 
-import { MESSAGE_ID, CHANNEL_ID, roleId, emoji } from "./config.json";
-import "./events/reaction.js";
+ import "./events/reaction.js";
 
 import dotenv from 'dotenv';
 dotenv.config();
